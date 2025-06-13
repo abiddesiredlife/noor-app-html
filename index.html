@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Noor App</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      background: linear-gradient(to bottom, #fff8e1, #f9f4d7);
+      color: #333;
+      margin: 0;
+      padding: 0;
+      direction: rtl;
+    }
+    header {
+      background-color: #d4af37;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+    }
+    .lang-switch {
+      text-align: left;
+      padding: 10px;
+    }
+    .content {
+      padding: 20px;
+    }
+    .card {
+      background-color: white;
+      margin-bottom: 15px;
+      padding: 15px;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    }
+    .card-title {
+      color: #bfa53a;
+      font-weight: bold;
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+    select {
+      padding: 8px;
+      margin: 5px;
+      border-radius: 6px;
+    }
+  </style>
+</head>
+<body>
+  <header>Noor App - Islamic Guide</header>
+
+  <div class="lang-switch">
+    <label for="lang">اللغة | Language:</label>
+    <select id="lang" onchange="switchLang()">
+      <option value="ar">Arabic (Default)</option>
+      <option value="en">English</option>
+      <option value="ur">Urdu</option>
+    </select>
+  </div>
+
+  <div class="content">
+    <div class="card">
+      <div class="card-title" data-key="quran">القرآن الكريم</div>
+      <p data-key="quran_text">اقرأ القرآن الكريم بدون اتصال - ترجمة بالإنجليزية والأردية عند الطلب</p>
+    </div>
+    <div class="card">
+      <div class="card-title" data-key="prayers">أوقات الصلاة</div>
+      <p data-key="prayers_text">احصل على أوقات الصلاة اليومية (في وضع عدم الاتصال قيد التطوير)</p>
+    </div>
+    <div class="card">
+      <div class="card-title" data-key="hadith">الحديث اليومي</div>
+      <p data-key="hadith_text">آيات وحديث يومية للتأمل والتذكير</p>
+    </div>
+    <div class="card">
+      <div class="card-title" data-key="kids">منطقة الأطفال</div>
+      <p data-key="kids_text">دروس، رسوم متحركة، وأدعية للأطفال</p>
+    </div>
+    <div class="card">
+      <div class="card-title" data-key="tasbeeh">عداد التسبيح</div>
+      <p data-key="tasbeeh_text">قم بعد التسبيح حتى بدون إنترنت</p>
+    </div>
+  </div>
+
+  <script>
+    const translations = {
+      en: {
+        quran: "Holy Quran",
+        quran_text: "Read Quran offline – Translations available on demand",
+        prayers: "Prayer Times",
+        prayers_text: "Daily prayer times (offline version coming soon)",
+        hadith: "Daily Hadith",
+        hadith_text: "Daily ayah and hadith reminders",
+        kids: "Kids Zone",
+        kids_text: "Lessons, cartoons, and duas for children",
+        tasbeeh: "Tasbeeh Counter",
+        tasbeeh_text: "Count dhikr offline easily"
+      },
+      ur: {
+        quran: "قرآن پاک",
+        quran_text: "قرآن پاک آف لائن پڑھیں – ترجمے دستیاب",
+        prayers: "نماز کے اوقات",
+        prayers_text: "روزانہ نماز کے اوقات (جلد آف لائن دستیاب)",
+        hadith: "روزانہ حدیث",
+        hadith_text: "روزانہ آیات اور احادیث کی یاددہانی",
+        kids: "بچوں کا زون",
+        kids_text: "تعلیم، کارٹونز، اور دعائیں بچوں کے لیے",
+        tasbeeh: "تسبیح کاؤنٹر",
+        tasbeeh_text: "ذکر کو آف لائن گنیں"
+      }
+    };
+
+    function switchLang() {
+      const lang = document.getElementById('lang').value;
+      document.querySelectorAll('[data-key]').forEach(el => {
+        const key = el.getAttribute('data-key');
+        if (translations[lang] && translations[lang][key]) {
+          el.textContent = translations[lang][key];
+        }
+      });
+    }
+  </script>
+</body>
+</html>
